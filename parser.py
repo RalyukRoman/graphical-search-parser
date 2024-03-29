@@ -62,7 +62,7 @@ class BooksToScrapeParse():
             link: str = part.css(self.parse_dict[tab_dict_parse]['link']).get()
             name: str = part.css(self.parse_dict[tab_dict_parse]['name']).get()
             description: str = part.css(self.parse_dict[tab_dict_parse]['description']).get()
-            if description in [None, '...', '...', '... (', '... ( '] and tab_dict_parse in ['', '&tbm=bks']:
+            if description in [None, '...', '... ', '... (', '... ( '] and tab_dict_parse in ['', '&tbm=bks']:
                 description: str = part.css(self.parse_dict[tab_dict_parse]['description_dop']).get()
             if description != None:
                 description = description.replace('/', '').replace('<span>', '').replace('<em>', '')
