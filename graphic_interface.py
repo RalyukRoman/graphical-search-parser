@@ -1,3 +1,4 @@
+# pip install requests parsel json PySimpleGUI
 import PySimpleGUI as sg
 from parser import BooksToScrapeParse
 
