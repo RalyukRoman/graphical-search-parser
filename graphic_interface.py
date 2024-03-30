@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-# pip install requests parsel json PySimpleGUI
-=======
-# pip install requests parsel json PySimpleGUI
->>>>>>> 022406f122a33c37e9626ad4d496064a61c5ab51
+# pip install requests parsel json random PySimpleGUI
+
 import PySimpleGUI as sg
 from parser import ScrapeParse
 import utils
