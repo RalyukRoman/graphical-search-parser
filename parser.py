@@ -1,10 +1,11 @@
-# pip install requests parsel json
+# pip install requests parsel json random
 import json
 import requests
+import random
 from parsel import Selector, SelectorList
 from requests import Response
 
-class BooksToScrapeParse():
+class ScrapeParse():
     def __init__(self, url: str) -> None:
         self.url = "https://www.google.com/search?q=" + url
         self.headers = self.get_headers()
@@ -32,25 +33,34 @@ class BooksToScrapeParse():
                     }
 
     def get_headers(self) -> dict:
+        user_agent = [
+                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4899.78 Safari/537.36",
+                        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36",
+                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Edge/98.0.1108.62 Safari/537.36",
+                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4899.145 Safari/537.36",
+                     ]
         return {
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+            'user-agent': user_agent[random.randint(0, 4)]
         }
 
-    def make_request(self, url: str | None = None) -> Response:
+    def make_request(self, url: str | None = None, headers: dict | None = None) -> Response:
         if url is None:
             url = self.url
-        return requests.get(url=url, headers=self.headers)
+        if headers is None:
+            headers = self.headers
+        return requests.get(url=url, headers=headers)
 
     def make_selector(self, response: Response | None = None) -> Selector:
         if response is None:
             response = self.response
-        selector: Selector = Selector(text=response.text)
-        return selector
+        return Selector(text=response.text)
 
     def parse(self, data=None, bool_parse: bool = True, tab_dict_parse: str = '', page: int = 0) -> list[dict]:
         if data is None:
             data = []
-        self.selector = self.make_selector(response=self.make_request(url=self.url + tab_dict_parse + f'&start={page}'))
+        if bool_parse:
+            self.selector = self.make_selector(response=self.make_request(url=self.url + tab_dict_parse + f'&start={page}'))
         if tab_dict_parse != '&tbm=nws':
             basis: SelectorList = self.selector.css('.dURPMd > div') if bool_parse else self.selector.css('.dURPMd div> div.ULSxyf')
         else:
