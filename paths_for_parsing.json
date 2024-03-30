@@ -1,0 +1,28 @@
+{
+  "": {
+    "title": "div.yuRUbf div span a h3::text",
+    "link": "div.yuRUbf div span a::attr(href)",
+    "name": "div.GTRloc.CA5RN span::text",
+    "description": "div.VwiC3b.yXK7lf.lVm3ye.r025kc.hJNv6b.Hdw6tb span",
+    "description_dop": "div.VwiC3b.yXK7lf.lVm3ye.r025kc.hJNv6b.Hdw6tb::text"
+      },
+  "&tbm=vid": {
+    "title": "h3.LC20lb.MBeuO.DKV0Md::text",
+    "link": "div.nhaZ2c div span a::attr(href)",
+    "name": "div.gqF9jc span::text",
+    "description": "div.fzUZNc div.ITZIwc::text"
+  },
+  "&tbm=nws": {
+    "title": "div.n0jPhd.ynAwRc.MBeuO.nDgy9d::text",
+    "link": "a.WlydOe::attr(href)",
+    "name": "div.MgUUmf.NUnG9d span::text",
+    "description": "div.GI74Re.nDgy9d::text"
+  },
+  "&tbm=bks": {
+    "title": "div.bHexk.Tz5Hvf div span a h3.LC20lb.MBeuO.DKV0Md::text",
+    "link": "div.bHexk.Tz5Hvf div span a::attr(href)",
+    "name": "div.N96wpd a.fl span::text",
+    "description": "div.cmlJmd span span::text",
+    "description_dop": "div.cmlJmd.ETWPw span span"
+  }
+}

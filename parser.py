@@ -12,37 +12,14 @@ class ScrapeParse():
         self.headers = self.get_headers()
         self.response = self.make_request()
         self.selector = self.make_selector()
-        self.parse_dict = {
-            '':        {'title': 'div.yuRUbf div span a h3::text',
-                         'link': 'div.yuRUbf div span a::attr(href)',
-                         'name': 'div.GTRloc.CA5RN span::text',
-                         'description': 'div.VwiC3b.yXK7lf.lVm3ye.r025kc.hJNv6b.Hdw6tb span',
-                         'description_dop': 'div.VwiC3b.yXK7lf.lVm3ye.r025kc.hJNv6b.Hdw6tb::text'},
-            '&tbm=vid': {'title': 'h3.LC20lb.MBeuO.DKV0Md::text',
-                         'link': 'div.nhaZ2c div span a::attr(href)',
-                         'name': 'div.gqF9jc span::text',
-                         'description': 'div.fzUZNc div.ITZIwc::text'},
-            '&tbm=nws': {'title': 'div.n0jPhd.ynAwRc.MBeuO.nDgy9d::text',
-                         'link': 'a.WlydOe::attr(href)',
-                         'name': 'div.MgUUmf.NUnG9d span::text',
-                         'description': 'div.GI74Re.nDgy9d::text'},
-            '&tbm=bks': {'title': 'div.bHexk.Tz5Hvf div span a h3.LC20lb.MBeuO.DKV0Md::text',
-                         'link': 'div.bHexk.Tz5Hvf div span a::attr(href)',
-                         'name': 'div.N96wpd a.fl span::text',
-                         'description': 'div.cmlJmd span span::text',
-                         'description_dop': 'div.cmlJmd.ETWPw span span'}
-                    }
+        with open('paths_for_parsing.json') as paths_for_parsing:
+            self.parse_dict = json.load(paths_for_parsing)
 
     def get_headers(self) -> dict:
-        user_agent = [
-                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4899.78 Safari/537.36",
-                        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36",
-                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Edge/98.0.1108.62 Safari/537.36",
-                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4899.145 Safari/537.36",
-                     ]
+        with open('user_agent.json') as user_agent:
+            templates = json.load(user_agent)
         return {
-            'user-agent': user_agent[random.randint(0, 4)]
+            'user-agent': random.choice(templates['user_agent'])
         }
 
     def make_request(self, url: str | None = None, headers: dict | None = None) -> Response:
