@@ -8,6 +8,7 @@
 - requests
 - parsel
 - GIT
+- PySimpleGUI
 
 
 
