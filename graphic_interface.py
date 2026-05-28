@@ -5,28 +5,42 @@ from parser import ScrapeParse
 import utils
 
 tabgrp = [
-          [sg.Text("Request input: ", size=(15, 1)),
-           sg.Text("Page input: ", size=(14, 1), key='PAGE_INPUT'),
-           sg.Text("Request now: ", size=(15, 1)),
-           sg.Text("Page now: ", size=(12, 1), key='PAGE_NOW')],
-          [sg.InputText(size=(15, 1)),
+          [
+          sg.Text("Request input: ", size=(15, 1)),
+          sg.Text("Page input: ", size=(14, 1), key='PAGE_INPUT'),
+          sg.Text("Request now: ", size=(15, 1)),
+          sg.Text("Page now: ", size=(12, 1), key='PAGE_NOW')
+          ],
+          [
+           sg.InputText(size=(15, 1)),
            sg.InputText(size=(15, 1)),
            sg.Text("", size=(15, 1), key='REQUEST', background_color='White', text_color='Black'),
-           sg.Text("", size=(15, 1), key='PAGE_N', background_color='White', text_color='Black')],
-          [sg.Button('Ok'),
+           sg.Text("", size=(15, 1), key='PAGE_N', background_color='White', text_color='Black')
+          ],
+          [
+           sg.Button('Ok'),
            sg.Button('Clear'),
-           sg.Checkbox("Redaction", key='redact')],
-          [sg.TabGroup([
-              [sg.Tab('All', [[sg.Output(size=(88, 20), key='ALL')]], background_color='Blue'),
+           sg.Checkbox("Redaction", key='redact')
+          ],
+          [
+           sg.TabGroup([
+              [
+               sg.Tab('All', [[sg.Output(size=(88, 20), key='ALL')]], background_color='Blue'),
                sg.Tab('News', [[sg.Output(size=(88, 20), key='NEWS')]], background_color='Green'),
                sg.Tab('Videos', [[sg.Output(size=(88, 20), key='VIDEOS')]], background_color='Purple'),
-               sg.Tab('Books', [[sg.Output(size=(88, 20), key='BOOKS')]], background_color='Red')]],
+               sg.Tab('Books', [[sg.Output(size=(88, 20), key='BOOKS')]], background_color='Red')
+              ]
+           ],
            tab_location='topleft', title_color='White', tab_background_color='Gray',
            selected_title_color='Yellow', selected_background_color='Gray',
-           border_width=5, enable_events=True, key="tab_group")],
-          [sg.Button('Back'),
+           border_width=5, enable_events=True, key="tab_group")
+          ],
+          [
+           sg.Button('Back'),
            sg.Button('Next'),
-           sg.Button('Exit')]]
+           sg.Button('Exit')
+          ]
+        ]
 
 page_n = -1
 dict_tab = {'ALL': '', 'VIDEOS': '&tbm=vid', 'NEWS': '&tbm=nws', 'BOOKS': '&tbm=bks', }
